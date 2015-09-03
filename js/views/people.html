@@ -1,0 +1,53 @@
+<!-- Add a Customer -->
+<form name="peopleForm" class="css-form">
+  <fieldset>
+    <legend>Create Contact</legend>
+
+    <input type="text" ng-model="peepCtrl.currentPerson.name" name="personName" minlength="2" maxlength="30" required placeholder="Name" />
+    <div ng-messages="personForm.personName.$error">
+        <span ng-message="minlength">Your name is too short.</span>
+        <span ng-message="maxlength">Your name is too long.</span>
+        <span ng-message="required">Your name is required.</span>
+    </div>
+    <br/>
+
+    <input type="text" ng-model="peepCtrl.currentPerson.address.city" name='personCity' minlength="2" maxlength="20" placeholder="City"/>
+    <div ng-messages="personForm.personCity.$error">
+        <span ng-message="minlength">Your city name is too short.</span>
+        <span ng-message="maxlength">Your city name is too long.</span>
+    </div>
+
+  </fieldset>
+
+  <br />
+  <button ng-click="peepCtrl.reset()" ng-disabled="peepCtrl.isUnchanged()" >Reset</button>
+  <button ng-click="peepCtrl.create()" ng-disabled="peepCtrl.form.$invalid || peepCtrl.isUnchanged()">Create Contact</button>
+</form>
+{{peepCtrl.currentPerson}}
+
+<!-- Show all Customers -->
+<hr>
+<br/>
+Filter: <input type="text" ng-model="personFilter.name"/>
+<br/>
+<table>
+  <tr>
+    <th ng-click="peepCtrl.doSort('name')">Name</th>
+    <th ng-click="peepCtrl.doSort('address.city')">City</th>
+    <th>Primary Email</th>
+    <th>Primary Phone</th>
+    <th>&nbsp;</th>
+  </tr>
+  <tr ng-repeat="person in peepCtrl.people | filter: personFilter | orderBy:peepCtrl.sortBy:peepCtrl.reverse">
+    <td>{{ person.name }}</td>
+    <td>{{ person.address.city}}</td>
+    <td>{{ person.email[0].address }}</td>
+    <td>{{ person.phone[0].number}}</td>
+    <td><a href="#/people/{{person.id}}">View Details</a></td>
+  </tr>
+</table>
+<br/>
+<span>Total number of contacts: {{peepCtrl.people.length}}</span>
+<br/>
+<br/>
+<footer>{{ peepCtrl.appSettings.title }} | Version: {{ peepCtrl.appSettings.version }}</footer>

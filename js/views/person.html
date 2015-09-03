@@ -1,0 +1,42 @@
+<h1>Here's the contact info for {{personCtrl.person.name}}:</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Street</th>
+    <th>City</th>
+    <th>State</th>
+    <th>Zip Code</th>
+  </tr>
+  <tr>
+    <td>{{ personCtrl.person.name }}</td>
+    <td>{{ personCtrl.person.address.street}}</td>
+    <td>{{ personCtrl.person.address.city}}</td>
+    <td>{{ personCtrl.person.address.state}}</td>
+    <td>{{ personCtrl.person.address.zip}}</td>
+  </tr>
+</table>
+
+Email addresses:
+<table>
+  <tr>
+    <th>Type</th>
+    <th>Email</th>
+  </tr>
+  <tr ng-repeat="email in personCtrl.person.email">
+    <td>{{email.type}}<td>
+    <td>{{email.address}}<td>
+  </tr>
+</table>
+
+Phone numbers:
+<table>
+  <tr>
+    <th>Type</th>
+    <th>Number</th>
+  </tr>
+  <tr ng-repeat="phone in personCtrl.person.phone">
+    <td>{{phone.type}}<td>
+    <td>{{phone.number}}<td>
+  </tr>
+</table>

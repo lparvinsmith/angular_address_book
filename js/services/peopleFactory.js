@@ -4,17 +4,17 @@
   var peopleFactory = function($http){
     var peopleAPI = {};
 
-    customersAPI.getPeople = function(){
+    peopleAPI.getPeople = function(){
       // allow access to the list of people
       return  $http.get('http://localhost:3000/people');
     };
 
-    customersAPI.getPerson = function(customerId){
+    peopleAPI.getPerson = function(personId){
       return  $http.get('http://localhost:3000/people/' + personId);
     };
 
-    customersAPI.create = function(customer){
-      return $http.post('http://localhost:3000/people/', {'person': person});
+    peopleAPI.create = function(person){
+      return $http.post('http://localhost:3000/people/', person);
     };
     return peopleAPI;
   };
